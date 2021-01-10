@@ -16,10 +16,11 @@ app.get('/status', (req, res) => {
   })
 })
 
+require('./passport')
 require('./routes')(app)
 
 // sequelize.sync({force: true}) /* Digunakan untuk drop semua database (gunakan sebelum production) */
-sequelize.sync()
+sequelize.sync(/* {force: true} */)
   .then(() => {
     app.listen(config.port)
     console.log(`Server started on port ${config.port}`)

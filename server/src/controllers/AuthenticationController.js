@@ -67,5 +67,20 @@ module.exports = {
         error: 'An error has occured trying to login.'
       })
     }
+  },
+
+  async user (req, res) {
+    try {
+      const user = await User.findAll({
+        limit: 5
+      })
+      // console.log(user);
+      // const userJSON = user.toJSON() /* this method only used when you have an params in your function */
+      res.send(user)
+    } catch (error) {
+      res.status(500).send({
+        error: 'An error has occured trying get user.'
+      })
+    }
   }
 }
